@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class SelectedCounterVisual : MonoBehaviour {
 
-    private ICounter interactable;
+    private Interactable interactable;
 
     private GameObject visualGameObject;
 
 
     private void Start() {
-        interactable = GetComponentInParent<ClearCounter>();
+        interactable = GetComponentInParent<Counter>();
         visualGameObject = gameObject.GetComponentInChildren<Transform>().gameObject;
         Player.Instance.ActionOnSelectedCounterChanged += changeSelectedCounter;
         hide();
@@ -17,7 +17,7 @@ public class SelectedCounterVisual : MonoBehaviour {
 
 
 
-    private void changeSelectedCounter(ICounter counter) {
+    private void changeSelectedCounter(Interactable counter) {
         if (counter == this.interactable) {
             show();
         } else {

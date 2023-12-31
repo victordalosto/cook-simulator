@@ -5,7 +5,7 @@ public class KitchenObject : MonoBehaviour {
     [field:SerializeField]
     public KitchenObjectSO kitchenObjectSO { get; private set; }
 
-    private ICounter counter;
+    private Interactable counter;
 
 
     public void Start() {
@@ -13,13 +13,12 @@ public class KitchenObject : MonoBehaviour {
     }
 
 
-    public void setCounter(ICounter counter) {
+    public void setCounter(Interactable counter) {
         this.counter = counter;
-        counter?.placeObject(this);
     }
 
 
-    public ICounter getCounter() {
+    public Interactable getCounter() {
         return counter;
     }
 

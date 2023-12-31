@@ -35,8 +35,7 @@ public class PlayerPhysics {
                                              out RaycastHit hit, attributes.InteractionDistance,
                                              ContainerManager.Instance.getCounterLayerMask());
         if (isInteracting
-            && hit.transform.TryGetComponent(out ICounter counter)
-            && counter.isInteractable())
+            && hit.transform.TryGetComponent(out Interactable counter))
         {
             player.setSelectedCounter(counter);
         } else {

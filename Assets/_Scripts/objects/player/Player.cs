@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-public class Player : Singleton<Player> {
+public class Player : Singleton<Player>, Interactable{
 
     [SerializeField]
     private GameInput gameInput;
@@ -11,9 +11,9 @@ public class Player : Singleton<Player> {
 
     private PlayerAttributes attributes;
 
-    private ICounter SelectedCounter;
+    private Interactable SelectedCounter;
 
-    public event Action<ICounter> ActionOnSelectedCounterChanged;
+    public event Action<Interactable> ActionOnSelectedCounterChanged;
 
 
     private new void Awake() {
@@ -25,7 +25,7 @@ public class Player : Singleton<Player> {
 
 
     private void Update() {
-        fisica.HandleMovement(this);
+        fisica.handleMovement(this);
     }
 
 
@@ -35,13 +35,17 @@ public class Player : Singleton<Player> {
 
 
     public void handleInteractions() {
-        SelectedCounter?.interact();
+        SelectedCounter?.interact(this);
     }
 
 
-    public void setSelectedCounter(ICounter counter) {
+    public void setSelectedCounter(Interactable counter) {
         SelectedCounter = counter;
         ActionOnSelectedCounterChanged?.Invoke(SelectedCounter);
     }
 
+
+    public void interact(Interactable other) {
+        throw new NotImplementedException();
+    }
 }
