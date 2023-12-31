@@ -1,9 +1,9 @@
 using UnityEngine;
 
 
-public class SelectedCounterScript : MonoBehaviour {
+public class SelectedCounterVisual : MonoBehaviour {
 
-    private Interactable interactable;
+    private ICounter interactable;
 
     private GameObject visualGameObject;
 
@@ -11,29 +11,29 @@ public class SelectedCounterScript : MonoBehaviour {
     private void Start() {
         interactable = GetComponentInParent<ClearCounter>();
         visualGameObject = gameObject.GetComponentInChildren<Transform>().gameObject;
-        Player.Instance.ActionOnSelectedCounterChanged += ChangeSelectedCounter;
-        Hide();
+        Player.Instance.ActionOnSelectedCounterChanged += changeSelectedCounter;
+        hide();
     }
 
 
 
-    private void ChangeSelectedCounter(Interactable interactable) {
-        if (interactable == this.interactable) {
-            Show();
+    private void changeSelectedCounter(ICounter counter) {
+        if (counter == this.interactable) {
+            show();
         } else {
-            Hide();
+            hide();
         }
     }
 
 
 
-    private void Show() {
+    private void show() {
         visualGameObject.SetActive(true);
     }
 
 
 
-    private void Hide() {
+    private void hide() {
         visualGameObject.SetActive(false);
     }
 

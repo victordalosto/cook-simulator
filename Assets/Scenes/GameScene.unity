@@ -377,6 +377,7 @@ Transform:
   m_Children:
   - {fileID: 1833196679}
   - {fileID: 1527366762}
+  - {fileID: 1561916796}
   m_Father: {fileID: 2145420427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
@@ -1189,6 +1190,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1561916795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1561916796}
+  m_Layer: 0
+  m_Name: Items
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1561916796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561916795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 344066357}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574559756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,6 +1335,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1527366762}
     m_Modifications:
+    - target: {fileID: -1076089990083238701, guid: 14163e1eb932cc94c8ce415690258137,
+        type: 3}
+      propertyPath: ItemPrefab
+      value: 
+      objectReference: {fileID: 2060533595289064972, guid: aca25256361d28b48b3de95111014f58,
+        type: 3}
+    - target: {fileID: -1076089990083238701, guid: 14163e1eb932cc94c8ce415690258137,
+        type: 3}
+      propertyPath: kitchenObject
+      value: 
+      objectReference: {fileID: 6164896889263333164, guid: 5bf4cee234d47354cab2c5a7f00cebe2,
+        type: 3}
     - target: {fileID: 832548537577625061, guid: 14163e1eb932cc94c8ce415690258137,
         type: 3}
       propertyPath: m_Name
@@ -1311,7 +1355,7 @@ PrefabInstance:
     - target: {fileID: 1524460981886566035, guid: 14163e1eb932cc94c8ce415690258137,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -3.67
       objectReference: {fileID: 0}
     - target: {fileID: 1524460981886566035, guid: 14163e1eb932cc94c8ce415690258137,
         type: 3}
@@ -1671,10 +1715,28 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1527366762}
     m_Modifications:
+    - target: {fileID: -1076089990083238701, guid: 14163e1eb932cc94c8ce415690258137,
+        type: 3}
+      propertyPath: ItemPrefab
+      value: 
+      objectReference: {fileID: 2060533595289064972, guid: c2991edd29cc5784ca943bf7d01376e7,
+        type: 3}
+    - target: {fileID: -1076089990083238701, guid: 14163e1eb932cc94c8ce415690258137,
+        type: 3}
+      propertyPath: tomatoPrefab
+      value: 
+      objectReference: {fileID: 3812876574508226176, guid: bc49891f572f1164e9938f845ec37ab0,
+        type: 3}
+    - target: {fileID: -1076089990083238701, guid: 14163e1eb932cc94c8ce415690258137,
+        type: 3}
+      propertyPath: kitchenObject
+      value: 
+      objectReference: {fileID: -5166658599277460290, guid: aca25256361d28b48b3de95111014f58,
+        type: 3}
     - target: {fileID: 1524460981886566035, guid: 14163e1eb932cc94c8ce415690258137,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.99
       objectReference: {fileID: 0}
     - target: {fileID: 1524460981886566035, guid: 14163e1eb932cc94c8ce415690258137,
         type: 3}

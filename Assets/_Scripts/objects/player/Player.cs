@@ -11,36 +11,36 @@ public class Player : Singleton<Player> {
 
     private PlayerAttributes attributes;
 
-    private Interactable SelectedCounter;
+    private ICounter SelectedCounter;
 
-    public event Action<Interactable> ActionOnSelectedCounterChanged;
+    public event Action<ICounter> ActionOnSelectedCounterChanged;
 
 
     private new void Awake() {
         base.Awake();
         attributes = GetComponentInChildren<PlayerAttributes>();
         fisica = new PlayerPhysics(gameInput, attributes);
-        gameInput.OnInteractEvent += HandleInteractions;
+        gameInput.OnInteractEvent += handleInteractions;
     }
 
 
     private void Update() {
-        fisica.HandleMovement(this, transform);
+        fisica.HandleMovement(this);
     }
 
 
-    public bool IsMoving() {
+    public bool isMoving() {
         return attributes.IsMoving;
     }
 
 
-    public void HandleInteractions() {
-        SelectedCounter?.Interact();
+    public void handleInteractions() {
+        SelectedCounter?.interact();
     }
 
 
-    public void SetSelectedCounter(Interactable interactable) {
-        SelectedCounter = interactable;
+    public void setSelectedCounter(ICounter counter) {
+        SelectedCounter = counter;
         ActionOnSelectedCounterChanged?.Invoke(SelectedCounter);
     }
 

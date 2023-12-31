@@ -9,7 +9,7 @@ public class ContainerManager : Singleton<ContainerManager> {
     public const string IS_WALKING = "IsWalking";
 
 
-    public LayerMask GetCounterLayerMask() {
+    public LayerMask getCounterLayerMask() {
         return COUNTER_LAYER_MASK;
     }
 

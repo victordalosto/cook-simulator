@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerPhysics {
 
-    private GameInput gameInput;
-    private PlayerAttributes attributes;
+    private readonly GameInput gameInput;
+    private readonly PlayerAttributes attributes;
 
 
     public PlayerPhysics(GameInput gameInput, PlayerAttributes attributes) {
@@ -14,34 +14,33 @@ public class PlayerPhysics {
 
 
 
-    public void HandleMovement(Player player, Transform transform) {
-        Vector3 movementVector = gameInput.GetMovementVector();
+    public void handleMovement(Player player) {
+        Vector3 movementVector = gameInput.getMovementVector();
         attributes.IsMoving = movementVector.magnitude > 0;
 
         if (!attributes.IsMoving) {
             return;
         }
 
-        changePlayerRotation(transform, movementVector);
-        changePlayerPosition(transform, movementVector);
-        ReturnInteractableNearBy(player, transform, movementVector);
+        changePlayerRotation(player.transform, movementVector);
+        changePlayerPosition(player.transform, movementVector);
+        ReturnInteractableNearPlayer(player, movementVector);
     }
 
 
 
-    public void ReturnInteractableNearBy(Player player, Transform transform, Vector3 movementVector) {
+    public void ReturnInteractableNearPlayer(Player player, Vector3 movementVector) {
         attributes.LastInteractDirection = movementVector;
-        bool isInteracting = Physics.Raycast(transform.position, attributes.LastInteractDirection,
+        bool isInteracting = Physics.Raycast(player.transform.position, attributes.LastInteractDirection,
                                              out RaycastHit hit, attributes.InteractionDistance,
-                                             ContainerManager.Instance.GetCounterLayerMask());
+                                             ContainerManager.Instance.getCounterLayerMask());
         if (isInteracting
-            && hit.transform.TryGetComponent(out Interactable interactable)
-            && interactable.CanInteract())
+            && hit.transform.TryGetComponent(out ICounter counter)
+            && counter.isInteractable())
         {
-            player.SetSelectedCounter(interactable);
+            player.setSelectedCounter(counter);
         } else {
-            player.SetSelectedCounter(null);
-
+            player.setSelectedCounter(null);
         }
     }
 
@@ -93,6 +92,5 @@ public class PlayerPhysics {
         }
         return canMove;
     }
-
 
 }

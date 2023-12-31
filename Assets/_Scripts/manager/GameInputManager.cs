@@ -13,19 +13,19 @@ public class GameInput : Singleton<GameInput> {
         base.Awake();
         playerActions = new PlayerInputActions();
         playerActions.Player.Enable();
-        playerActions.Player.Interact.performed += Interaction;
+        playerActions.Player.Interact.performed += userInteraction;
     }
 
 
 
-    public Vector3 GetMovementVector() {
+    public Vector3 getMovementVector() {
         Vector2 inputVector = playerActions.Player.Move.ReadValue<Vector2>();
         return new Vector3(inputVector.x, 0, inputVector.y);
     }
 
 
 
-    private void Interaction(InputAction.CallbackContext context) {
+    private void userInteraction(InputAction.CallbackContext context) {
         OnInteractEvent?.Invoke();
     }
 
