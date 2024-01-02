@@ -1,20 +1,27 @@
 using UnityEngine;
 
 
-public class PlayerPhysics {
+public class PlayerMovement : MonoBehaviour {
 
-    private readonly GameInput gameInput;
-    private readonly PlayerAttributes attributes;
+    private Player player;
+    private GameInput gameInput;
+    private PlayerAttributes attributes;
 
 
-    public PlayerPhysics(GameInput gameInput, PlayerAttributes attributes) {
-        this.gameInput = gameInput;
-        this.attributes = attributes;
+    void Start() {
+        this.player = GetComponentInParent<Player>();
+        this.gameInput = player.gameInput;
+        this.attributes = player.attributes;
+    }
+
+
+    void Update() {
+        handleMovement();
     }
 
 
 
-    public void handleMovement(Player player) {
+    public void handleMovement() {
         Vector3 movementVector = gameInput.getMovementVector();
         attributes.IsMoving = movementVector.magnitude > 0;
 
@@ -24,12 +31,12 @@ public class PlayerPhysics {
 
         changePlayerRotation(player.transform, movementVector);
         changePlayerPosition(player.transform, movementVector);
-        ReturnInteractableNearPlayer(player, movementVector);
+        returnInteractableNearPlayer(player, movementVector);
     }
 
 
 
-    public void ReturnInteractableNearPlayer(Player player, Vector3 movementVector) {
+    public void returnInteractableNearPlayer(Player player, Vector3 movementVector) {
         attributes.LastInteractDirection = movementVector;
         bool isInteracting = Physics.Raycast(player.transform.position, attributes.LastInteractDirection,
                                              out RaycastHit hit, attributes.InteractionDistance,

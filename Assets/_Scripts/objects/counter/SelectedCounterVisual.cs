@@ -8,11 +8,19 @@ public class SelectedCounterVisual : MonoBehaviour {
     private GameObject visualGameObject;
 
 
-    private void Start() {
+    private void Awake() {
         interactable = GetComponentInParent<Counter>();
-        visualGameObject = gameObject.GetComponentInChildren<Transform>().gameObject;
-        Player.Instance.ActionOnSelectedCounterChanged += changeSelectedCounter;
+        visualGameObject = transform.GetChild(0).gameObject;
         hide();
+    }
+
+    private void Start() {
+        Player.Instance.ActionOnSelectedCounterChanged += changeSelectedCounter;
+    }
+
+    private void OnDestroy() {
+        if (Player.Instance != null)
+            Player.Instance.ActionOnSelectedCounterChanged -= changeSelectedCounter;
     }
 
 

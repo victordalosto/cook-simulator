@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour {
 
-    private Player player;
+    private PlayerAttributes playerAttributes;
 
     private Animator animator;
 
 
-    private void Awake() {
-        player = GetComponentInParent<Player>();
+    private void Start() {
+        Player player = GetComponentInParent<Player>();
+        playerAttributes = player.attributes;
         animator = GetComponent<Animator>();
         animator.SetBool(ContainerManager.IS_WALKING, false);
     }
 
 
     private void Update() {
-        animator.SetBool(ContainerManager.IS_WALKING, player.isMoving());
+        animator.SetBool(ContainerManager.IS_WALKING, playerAttributes.IsMoving);
     }
 
 }

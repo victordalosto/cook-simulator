@@ -2,6 +2,6 @@
 
 public interface Interactable {
 
-    void interact(Interactable other);
+    void interact(PlayerInteractable player);
 
 }

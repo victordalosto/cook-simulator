@@ -9,6 +9,10 @@ public class KitchenObjectHolder : MonoBehaviour, IObjectHolder<KitchenObject> {
         currentObject = null;
     }
 
+    void OnDestroy() {
+        currentObject = null;
+    }
+
 
     public bool hasObject() {
         return currentObject != null;
@@ -19,6 +23,7 @@ public class KitchenObjectHolder : MonoBehaviour, IObjectHolder<KitchenObject> {
         if (!hasObject() && obj != null) {
             currentObject = obj;
             obj.transform.position = transform.position;
+            obj.transform.SetParent(transform);
         }
     }
 

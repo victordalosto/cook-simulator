@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour, Interactable {
 
-    [SerializeField]
-    private KitchenObjectSO kitchenObjectSO;
-
     private KitchenObjectHolder objectHolder;
 
 
-    private void Start() {
+    void Start() {
         objectHolder = GetComponentInChildren<KitchenObjectHolder>();
     }
 
@@ -26,21 +23,38 @@ public class Counter : MonoBehaviour, Interactable {
 
 
 
-    public void interact(Interactable other) {
-        if (!objectHolder.hasObject()) {
-            KitchenObject kitchenObject = createObject();
-            objectHolder.placeObject(kitchenObject);
+    public void interact(PlayerInteractable player) {
+        IObjectHolder<KitchenObject> playerObjectHolder = player.getObjectHolder();
+        if (playerObjectHolder.hasObject()) {
+            placeItemInCounter(playerObjectHolder);
         } else {
-            Debug.Log("The counte is already occupied with.");
+            obtainItemInCounter(playerObjectHolder);
         }
     }
 
 
 
-    private KitchenObject createObject() {
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, objectHolder.transform);
-        kitchenObjectTransform.localPosition = Vector3.zero;
-        return kitchenObjectTransform.GetComponent<KitchenObject>();
+    private void placeItemInCounter(IObjectHolder<KitchenObject> playerObjectHolder) {
+        if (objectHolder.hasObject()) {
+            // Counter is full
+        } else {
+            // Counter has space
+            KitchenObject kitchenObject = playerObjectHolder.obtainObject();
+            objectHolder.placeObject(kitchenObject);
+            playerObjectHolder.placeObject(null);
+        }
     }
 
+
+
+    private void obtainItemInCounter(IObjectHolder<KitchenObject> playerObjectHolder) {
+        if (objectHolder.hasObject()) {
+            // Counter has item to give
+            KitchenObject kitchenObject = objectHolder.obtainObject();
+            playerObjectHolder.placeObject(kitchenObject);
+            objectHolder.placeObject(null);
+        } else {
+            // No item to give
+        }
+    }
 }

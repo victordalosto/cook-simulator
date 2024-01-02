@@ -1,42 +1,29 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
-public class Player : Singleton<Player>, Interactable{
+public class Player : Singleton<Player>, PlayerInteractable {
 
-    [SerializeField]
-    private GameInput gameInput;
+    [field:SerializeField]
+    public GameInput gameInput { get; private set; }
 
-    private PlayerPhysics fisica;
-
-    private PlayerAttributes attributes;
+    public PlayerAttributes attributes { get; private set; }
 
     private Interactable SelectedCounter;
 
     public event Action<Interactable> ActionOnSelectedCounterChanged;
 
+    private KitchenObjectHolder objectHolder;
+
 
     private new void Awake() {
         base.Awake();
         attributes = GetComponentInChildren<PlayerAttributes>();
-        fisica = new PlayerPhysics(gameInput, attributes);
-        gameInput.OnInteractEvent += handleInteractions;
+        objectHolder = GetComponentInChildren<KitchenObjectHolder>();
+        gameInput.OnInteractEvent += interact;
     }
 
-
-    private void Update() {
-        fisica.handleMovement(this);
-    }
-
-
-    public bool isMoving() {
-        return attributes.IsMoving;
-    }
-
-
-    public void handleInteractions() {
-        SelectedCounter?.interact(this);
-    }
 
 
     public void setSelectedCounter(Interactable counter) {
@@ -45,7 +32,13 @@ public class Player : Singleton<Player>, Interactable{
     }
 
 
-    public void interact(Interactable other) {
-        throw new NotImplementedException();
+
+    public void interact() {
+        SelectedCounter?.interact(this);
+    }
+
+
+    public IObjectHolder<KitchenObject> getObjectHolder() {
+        return objectHolder;
     }
 }
