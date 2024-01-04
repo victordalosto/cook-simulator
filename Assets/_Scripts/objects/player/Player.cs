@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
-public class Player : Singleton<Player>, PlayerInteractable {
+public class Player : Singleton<Player>, IPlayerInteractable {
 
     [field:SerializeField]
     public GameInput gameInput { get; private set; }

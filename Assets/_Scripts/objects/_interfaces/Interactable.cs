@@ -2,6 +2,6 @@
 
 public interface Interactable {
 
-    void interact(PlayerInteractable player);
+    void interact(IPlayerInteractable player);
 
 }

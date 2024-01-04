@@ -23,7 +23,7 @@ public class Counter : MonoBehaviour, Interactable {
 
 
 
-    public void interact(PlayerInteractable player) {
+    public void interact(IPlayerInteractable player) {
         IObjectHolder<KitchenObject> playerObjectHolder = player.getObjectHolder();
         if (playerObjectHolder.hasObject()) {
             placeItemInCounter(playerObjectHolder);
@@ -41,7 +41,6 @@ public class Counter : MonoBehaviour, Interactable {
             // Counter has space
             KitchenObject kitchenObject = playerObjectHolder.obtainObject();
             objectHolder.placeObject(kitchenObject);
-            playerObjectHolder.placeObject(null);
         }
     }
 
@@ -52,7 +51,6 @@ public class Counter : MonoBehaviour, Interactable {
             // Counter has item to give
             KitchenObject kitchenObject = objectHolder.obtainObject();
             playerObjectHolder.placeObject(kitchenObject);
-            objectHolder.placeObject(null);
         } else {
             // No item to give
         }

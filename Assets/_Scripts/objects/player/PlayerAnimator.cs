@@ -12,12 +12,12 @@ public class PlayerAnimator : MonoBehaviour {
         Player player = GetComponentInParent<Player>();
         playerAttributes = player.attributes;
         animator = GetComponent<Animator>();
-        animator.SetBool(ContainerManager.IS_WALKING, false);
+        animator.SetBool(ContainerManager.Animacoes.PLAYER_IS_WALKING, false);
     }
 
 
     private void Update() {
-        animator.SetBool(ContainerManager.IS_WALKING, playerAttributes.IsMoving);
+        animator.SetBool(ContainerManager.Animacoes.PLAYER_IS_WALKING, playerAttributes.IsMoving);
     }
 
 }

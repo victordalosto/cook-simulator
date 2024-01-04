@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -5,18 +7,22 @@ public class SelectedCounterVisual : MonoBehaviour {
 
     private Interactable interactable;
 
-    private GameObject visualGameObject;
+    private List<GameObject> visualGameObject;
 
 
     private void Awake() {
-        interactable = GetComponentInParent<Counter>();
-        visualGameObject = transform.GetChild(0).gameObject;
+        interactable = GetComponentInParent<Interactable>();
+        visualGameObject = transform.Cast<Transform>().Select(child => child.gameObject).ToList();
         hide();
     }
+
+
 
     private void Start() {
         Player.Instance.ActionOnSelectedCounterChanged += changeSelectedCounter;
     }
+
+
 
     private void OnDestroy() {
         if (Player.Instance != null)
@@ -36,13 +42,17 @@ public class SelectedCounterVisual : MonoBehaviour {
 
 
     private void show() {
-        visualGameObject.SetActive(true);
+        foreach (GameObject go in visualGameObject) {
+            go.SetActive(true);
+        }
     }
 
 
 
     private void hide() {
-        visualGameObject.SetActive(false);
+        foreach (GameObject go in visualGameObject) {
+            go.SetActive(false);
+        }
     }
 
 }

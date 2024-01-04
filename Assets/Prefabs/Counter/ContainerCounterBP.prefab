@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8306941549902520875}
   - component: {fileID: 7560337393028392322}
   m_Layer: 3
-  m_Name: ContainerCounter
+  m_Name: ContainerCounterBP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
