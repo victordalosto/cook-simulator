@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Counter : MonoBehaviour, Interactable {
+public class CuttingCounter : MonoBehaviour, Interactable {
 
     private KitchenObjectHolder objectHolder;
 
@@ -11,19 +11,31 @@ public class Counter : MonoBehaviour, Interactable {
     }
 
 
-    // #DELETE this after tests
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.F1)) {
+
+    public void interactAlternate(IPlayerInteractable player) {
+        if (objectHolder.hasObject()) {
             KitchenObject kitchenObject = objectHolder.obtainObject();
-            if (kitchenObject != null) {
-                Destroy(kitchenObject.gameObject);
+            if (kitchenObject.isCuttable()) {
+                cut(kitchenObject);
+            } else {
+                objectHolder.placeObject(kitchenObject);
             }
         }
     }
 
 
 
-    public void interactAlternate(IPlayerInteractable player) {
+    private void cut(KitchenObject kitchenObject) {
+        kitchenObject.cuttingProgress--;
+        if (kitchenObject.cuttingProgress > 0) {
+            objectHolder.placeObject(kitchenObject);
+        } else {
+            Debug.Log("Cutting finished");
+            kitchenObject.destroy();
+            KitchenObjectSO cuttedKitchenObjectSO = kitchenObject.cuttedKitchenObjectSO;
+            KitchenObject cuttedKitchenObject = cuttedKitchenObjectSO.createObject(transform);
+            objectHolder.placeObject(cuttedKitchenObject);
+        }
     }
 
 

@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class GameInput : Singleton<GameInput> {
 
-    public event Action OnInteractEvent;
+    private event Action EventOnInteract;
+    private event Action EventOnInteractAlternate;
     private PlayerInputActions playerActions;
 
 
@@ -13,7 +14,9 @@ public class GameInput : Singleton<GameInput> {
         base.Awake();
         playerActions = new PlayerInputActions();
         playerActions.Player.Enable();
-        playerActions.Player.Interact.performed += userInteraction;
+
+        playerActions.Player.Interact.performed += ctx => EventOnInteract?.Invoke();
+        playerActions.Player.InteractAlternate.performed += ctx => EventOnInteractAlternate?.Invoke();
     }
 
 
@@ -25,8 +28,23 @@ public class GameInput : Singleton<GameInput> {
 
 
 
-    private void userInteraction(InputAction.CallbackContext context) {
-        OnInteractEvent?.Invoke();
+    public void addEventOnInteract(Action action) {
+        EventOnInteract += action;
+    }
+
+
+    public void addEventOnInteractAlternate(Action action) {
+        EventOnInteractAlternate += action;
+    }
+
+
+    public void removeEventOnInteract(Action action) {
+        EventOnInteract -= action;
+    }
+
+
+    public void removeEventOnInteractAlternate(Action action) {
+        EventOnInteractAlternate -= action;
     }
 
 }

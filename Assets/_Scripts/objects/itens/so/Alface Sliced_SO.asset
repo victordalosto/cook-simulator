@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b0fc4cf1d59b0d418a9f0a58b694f83, type: 3}
-  m_Name: Plate Complete
+  m_Name: Alface Sliced_SO
   m_EditorClassIdentifier: 
-  <objectName>k__BackingField: Plate Complete
-  <prefab>k__BackingField: {fileID: 2060533595289064972, guid: e4b6c03197886fd47adc281ff5c0bda5,
+  <objectName>k__BackingField: Alface Sliced
+  <prefab>k__BackingField: {fileID: 2060533595289064972, guid: 21f9afdc5eb07434a8dd67d2d21c6431,
     type: 3}
-  <sprite>k__BackingField: {fileID: 21300000, guid: 3928afb5321bb3d489bbd4ac581b29a2,
+  <sprite>k__BackingField: {fileID: 21300000, guid: bee24f07c57157e45a946eed3bfe8b84,
     type: 3}

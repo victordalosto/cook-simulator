@@ -1,0 +1,1 @@
+Here lays the Kitchen objects instatiated by ScriptableObject

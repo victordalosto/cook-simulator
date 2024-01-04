@@ -10,12 +10,18 @@ public class CounterContainer : MonoBehaviour, Interactable {
 
     private List<CounterCounter_Visual> counterAnimator;
 
-    private Action EventOnInteract;
+    public Action EventOnInteract;
 
 
     void Start() {
         counterAnimator = new List<CounterCounter_Visual>(GetComponentsInChildren<CounterCounter_Visual>());
     }
+
+
+
+    public void interactAlternate(IPlayerInteractable player) {
+    }
+
 
 
     public void interact(IPlayerInteractable player) {
@@ -29,13 +35,6 @@ public class CounterContainer : MonoBehaviour, Interactable {
 
 
     private KitchenObject createObject() {
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, transform);
-        kitchenObjectTransform.localPosition = Vector3.zero;
-        return kitchenObjectTransform.GetComponent<KitchenObject>();
-    }
-
-
-    public void addEventOnInteract(Action action) {
-        EventOnInteract += action;
+        return kitchenObjectSO.createObject(transform);
     }
 }

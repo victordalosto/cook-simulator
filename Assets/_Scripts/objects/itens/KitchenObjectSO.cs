@@ -14,4 +14,12 @@ public class KitchenObjectSO : ScriptableObject {
     public Sprite sprite { get; private set; }
 
 
+
+    public KitchenObject createObject(Transform transform) {
+        Transform kitchenObjectTransform = Instantiate(prefab, transform);
+        kitchenObjectTransform.localPosition = Vector3.zero;
+        return kitchenObjectTransform.GetComponent<KitchenObject>();
+    }
+
+
 }

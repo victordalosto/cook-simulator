@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -21,7 +20,8 @@ public class Player : Singleton<Player>, IPlayerInteractable {
         base.Awake();
         attributes = GetComponentInChildren<PlayerAttributes>();
         objectHolder = GetComponentInChildren<KitchenObjectHolder>();
-        gameInput.OnInteractEvent += interact;
+        gameInput.addEventOnInteract(interact);
+        gameInput.addEventOnInteractAlternate(interactAlternate);
     }
 
 
@@ -35,6 +35,12 @@ public class Player : Singleton<Player>, IPlayerInteractable {
 
     public void interact() {
         SelectedCounter?.interact(this);
+    }
+
+
+
+    public void interactAlternate() {
+        SelectedCounter?.interactAlternate(this);
     }
 
 

@@ -12,7 +12,16 @@ public class CounterCounter_Visual : MonoBehaviour {
         animator.SetBool(ContainerManager.Animacoes.COUNTER_OPEN_CLOSE, false);
 
         CounterContainer counterContainer = GetComponentInParent<CounterContainer>();
-        counterContainer.addEventOnInteract(playAnimation);
+        counterContainer.EventOnInteract += playAnimation;
+    }
+
+
+
+    private void OnDestroy() {
+        animator = null;
+        CounterContainer counterContainer = GetComponentInParent<CounterContainer>();
+        if (counterContainer != null)
+            counterContainer.EventOnInteract -= playAnimation;
     }
 
 

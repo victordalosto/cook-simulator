@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b0fc4cf1d59b0d418a9f0a58b694f83, type: 3}
-  m_Name: Meat Cooked
+  m_Name: Meat Burned_SO
   m_EditorClassIdentifier: 
-  <objectName>k__BackingField: Meat Cooked
-  <prefab>k__BackingField: {fileID: 2060533595289064972, guid: f29a5d60e9d95ab40a5845b8ee1d5e61,
+  <objectName>k__BackingField: Meat Burned
+  <prefab>k__BackingField: {fileID: 2060533595289064972, guid: 0dcf2c722bad2d644893f0db92bf77ea,
     type: 3}
-  <sprite>k__BackingField: {fileID: 21300000, guid: f1f50c7ef90b19741b26f2040806cf56,
+  <sprite>k__BackingField: {fileID: 21300000, guid: 713ea9afa60dd6e4ebf6503a33e8cc99,
     type: 3}

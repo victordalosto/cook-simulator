@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b0fc4cf1d59b0d418a9f0a58b694f83, type: 3}
-  m_Name: Cheese
+  m_Name: Cheese_SO
   m_EditorClassIdentifier: 
   <objectName>k__BackingField: Cheese
   <prefab>k__BackingField: {fileID: 2060533595289064972, guid: aca25256361d28b48b3de95111014f58,
